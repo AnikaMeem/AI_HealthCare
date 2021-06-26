@@ -33,6 +33,10 @@ body{
   .banner_img{
       width: 100%;
       height: 100%;
+      box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+      -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+      padding: 0;
   }
   .colored_text{
       background: linear-gradient(to right,yellow,red);
@@ -47,8 +51,8 @@ body{
         top: 50%;
         transform: translate(-50%,-50%);
         background-color:rgb(185, 171, 171);
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
         padding: 20px;
         box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
        -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
