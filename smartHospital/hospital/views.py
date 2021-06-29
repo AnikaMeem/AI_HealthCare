@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def home_page(request):
     return render(request,'hospital/index.html')
+
+def aboutus(request):
+    return render(request,'hospital/aboutus.html')
