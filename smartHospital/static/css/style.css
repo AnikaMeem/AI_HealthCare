@@ -36,13 +36,16 @@ body{
       box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
       -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
       -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-      padding: 0;
   }
   .colored_text{
       background: linear-gradient(to right,yellow,red);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
+      transition: all .3s;
+  }
+  .colored_text:hover{
+    transform: skewX(-15deg)
   }
   @media (min-width:768px) {
     .center_box{
