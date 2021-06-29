@@ -40,6 +40,7 @@ body{
   .colored_text{
       background: linear-gradient(to right,yellow,red);
       background-clip: text;
+      display: inline-block;
       -webkit-background-clip: text;
       color: transparent;
       transition: all .3s;
