@@ -20,9 +20,9 @@
           Login 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Admin</a>
-          <a class="dropdown-item" href="#">Doctor</a>
-          <a class="dropdown-item" href="#">Patient</a>
+          <a class="dropdown-item" href="{% url 'adminlogin' %}">Admin</a>
+          <a class="dropdown-item" href="{% url 'doctorlogin' %}">Doctor</a>
+          <a class="dropdown-item" href="{% url 'patientlogin' %}">Patient</a>
         </div>
       </li>
     </ul>

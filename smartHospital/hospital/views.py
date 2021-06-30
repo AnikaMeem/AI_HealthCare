@@ -7,3 +7,12 @@ def home_page(request):
 
 def aboutus(request):
     return render(request,'hospital/aboutus.html')
+
+def adminlogin(request):
+    return render(request,'hospital/login.html',context={"usertype":"Admin"})
+
+def doctorlogin(request):
+    return render(request,'hospital/login.html',context={"usertype":"Doctor"})
+
+def patientlogin(request):
+    return render(request,'hospital/login.html',context={"usertype":"Patient"})

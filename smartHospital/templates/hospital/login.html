@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Admin Login
+{% endblock title %}
+
+{% block content %}
+{% include 'hospital/main_navbar.html' %}
+<div class="login">
+    <div class="header">
+        <div class="text-center">
+            <span class="display-3 glow mt-2">Login</span>
+        </div>
+    </div>
+
+    <div class="login_form">
+        <form action="." method="POST">
+            {% csrf_token %}
+            <input id="adminName" type="text" name="admin_name" placeholder={{ usertype }} required/>
+            <label for="adminName">{{ usertype }}</label>
+            <input id="admin_pass" type="password" name="admin_pass" placeholder="Password" required/>
+            <label for="admin_pass">Password</label>
+            <input class = "btn btn-outline-success" type="submit" value="Login" name="submit">
+        </form>
+    </div>
+</div>
+
+
+{% include 'hospital/footer.html' %}
+{% endblock content %}

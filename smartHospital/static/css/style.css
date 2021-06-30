@@ -63,3 +63,53 @@ body{
        -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     }
   }
+  .login_form{
+    height: 60vh;
+    width: 60%;
+    background-color: #fff;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,5%);
+    margin: 30px;
+  }
+  .login_form form {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-95%,-50%);
+    width: 350px;
+  }
+  .login_form form input:not(:last-child){
+    display: block;
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 20px;
+    border: none;
+    transition: all .4s;
+    backface-visibility: hidden;
+  }
+  .login_form form input:not(:last-child):placeholder-shown ~ label{
+    opacity: 0;
+    transform: translate(9px, -53px);
+  }
+
+  .login_form form label{
+    color: #797373;
+    position: absolute;
+    transform: translate(7px, -80px);
+    opacity: 1;
+    transition: all .5s;
+  }
+  .login_form form::-webkit-input-placeholder{
+    color: #797373;
+  }
+  
+  .login_form form input:not(:last-child):focus:valid{
+    border-bottom: 3px solid #0fa00f;
+  }
+  .login_form form input:not(:last-child):focus{
+    outline: none;
+    box-shadow: 0 0.5rem 4rem rgba(0, 0, 0, 0.5);
+    border-bottom: 3px solid #ff7730;
+  }
