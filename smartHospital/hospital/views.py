@@ -16,3 +16,6 @@ def doctorlogin(request):
 
 def patientlogin(request):
     return render(request,'hospital/login.html',context={"usertype":"Patient"})
+
+def contactUs(request):
+    return render(request,'hospital/contactus.html')
