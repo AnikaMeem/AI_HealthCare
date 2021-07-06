@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Admin Login
 {% endblock title %}
@@ -16,12 +16,15 @@
     <div class="login_form">
         <form action="." method="POST">
             {% csrf_token %}
-            <input id="adminName" type="text" name="name" placeholder={{ usertype }} required/>
+            <input id="adminName" type="text" name="name" placeholder= "{{ usertype }}" required/>
             <label for="adminName">{{ usertype }}</label>
             <input id="admin_pass" type="password" name="pass" placeholder="Password" required/>
             <label for="admin_pass">Password</label>
             <input class = "btn btn-outline-success" type="submit" value="Login" name="submit">
         </form>
+        <div class="image">
+            <img src="{%static image %}" alt="">
+        </div>
     </div>
 </div>
 

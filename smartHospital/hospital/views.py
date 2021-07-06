@@ -9,13 +9,22 @@ def aboutus(request):
     return render(request,'hospital/aboutus.html')
 
 def adminlogin(request):
-    return render(request,'hospital/login.html',context={"usertype":"Admin"})
+    return render(request,'hospital/login.html',context={
+        "usertype":"Admin",
+        "image":"images/admin.png"
+        })
 
 def doctorlogin(request):
-    return render(request,'hospital/login.html',context={"usertype":"Doctor"})
+    return render(request,'hospital/login.html',context={
+        "usertype":"Doctor",
+        "image":"images/doctor.png"
+        })
 
 def patientlogin(request):
-    return render(request,'hospital/login.html',context={"usertype":"Patient"})
+    return render(request,'hospital/login.html',context={
+        "usertype":"Patient",
+        "image":"images/patient.png"
+        })
 
 def contactUs(request):
     return render(request,'hospital/contactus.html')
