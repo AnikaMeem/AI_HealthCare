@@ -28,3 +28,6 @@ def patientlogin(request):
 
 def contactUs(request):
     return render(request,'hospital/contactus.html')
+
+def adminDash(request):
+    return render(request,'hospital/admin_dash.html')

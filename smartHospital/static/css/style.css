@@ -149,3 +149,106 @@ body{
     width: 100%;
     height: 100%;
   }
+  .Admin_heading{
+    color: #5f5d5d;
+    text-align: center;
+    margin-top: 30px;
+  }
+  .admin_dash{
+    width: 70%;
+    height: 70vh;
+    margin: 0 auto;
+    background: #d2d2d2;
+  }
+  .admin_box{
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+  }
+  .one h5,.two h5{
+    text-transform: capitalize;
+    position: absolute;
+    top: 10%;
+  }
+  .three h5{
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 10%;
+  }
+  .four h5{
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 0%;
+    left: 15%;
+  }
+  .admin_box:nth-child(odd){
+    box-shadow: -4px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -4px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -4px 4px 5px 0px rgba(0,0,0,0.75);
+  }
+  .one{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-115%, -115%);
+  }
+  .two{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(5%, -115%);
+  }
+  .three{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-115%, 5%);
+  }
+  .four{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(5%, 5%);
+  }
+  .admin_box p{
+    font-size: 65px;
+    color: #4c4949;
+  }
+  .admin_control{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    width: 85%;
+    font-size: 30px;
+    color: #b59e9e !important;
+    background: #e2dfdf;
+    border-radius: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  .admin_circle{
+    background: white;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #848282;
+    border-radius: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .admin_control:active{
+    box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
+  }
