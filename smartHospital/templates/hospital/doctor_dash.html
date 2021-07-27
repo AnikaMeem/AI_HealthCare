@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+
+{% load static %}
+{% block title %}
+    Doctor Dashboard
+{% endblock title %}
+    
+
+
+{% block content %}
+    <div class="bg-light doctor-dash-size">
+        <div class="row doctor-dash-size">
+            <div class="col-3 bg-success">
+                <div class="text-center">
+                    <img class="doctor-img-size" src="{% static 'images/doctor.png' %}" />
+                </div>
+
+                <div class="text-white mt-5 pl-2">
+                    <h4 class="p-2">Name: {{ doctor.first_name }} {{ doctor.last_name }}</h4>
+                    <h5 class="mt-1 p-2 text-capitalize">Hospital: {{doctor.hospital}}</h5>
+                    <h5 class="mt-1 p-2">Email:{{doctor.email}}</h5>
+                    <a href="{% url 'diseasePrediction' %}" class="ml-2 btn btn-outline-warning text-capitalize">disease prediction</a>
+                    <form class="ml-2" method="POST" action=".">
+                        {% csrf_token %}
+                        <input type="hidden" name="logout" value="logout"/>
+                        <button class="btn mt-3 btn-outline-danger">Log Out</button>
+                    </form>
+                    
+                </div>
+
+            </div>
+            <div class="col-9 bg-light">
+                <div class="heading mt-2">
+                    <h1 class="text-center text-capitalize text-warning"> appointments </h1>
+                </div>
+                <div class="appointment-list mt-3 overflow-auto">
+                    <form method="POST" action=".">
+                        {% csrf_token %}
+                        <ol class="list-group">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-10">
+                                        Cras justo odio
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-success">Complete</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-10">
+                                        Dapibus ac facilisis in
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-success">Complete</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-10">
+                                        Morbi leo risus
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-success">Complete</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-10">
+                                        Porta ac consectetur ac
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-success">Complete</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-10">
+                                        Vestibulum at eros
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-success">Complete</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>
+                          </ol>
+                    </form>
+                </div>
+
+                <div class="heading mt-2">
+                    <h1 class="text-center text-capitalize text-warning"> appointment request </h1>
+                </div>
+                <div class="appointment-list mt-3 overflow-auto">
+                    <form method="POST" action=".">
+                        {% csrf_token %}
+                        <ol class="list-group">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        Cras justo odio
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <button class="btn btn-success">Accept</button>
+                                        <button class="btn btn-danger">Reject</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-8">
+                                        Dapibus ac facilisis in
+                                    </div>
+                                    <div class="col-4 text-right">
+                                        <button class="btn btn-success">Accept</button>
+                                        <button class="btn btn-danger">Reject</button>
+                                    </div>
+                                </div>    
+                                 
+                            </li>   
+                          </ol>
+                    </form>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+    
