@@ -1,3 +1,7 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+
+admin.site.site_header = 'AI Hospital Administration'
+admin.site.register(models.Doctor)
+admin.site.register(models.Patient)

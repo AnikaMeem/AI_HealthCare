@@ -252,3 +252,15 @@ body{
     -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
   }
+  .doctor-dash-size{
+    width: 100%;
+    height: 100vh;
+  }
+.doctor-img-size{
+  height: 100px;
+  margin-top: 20px;
+}
+.appointment-list{
+  height: 250px;
+  overflow: scroll;
+}

@@ -1,4 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse
+from django.http import HttpResponseRedirect,HttpResponse
+from django.views.generic import DetailView,View
+from .models import Doctor,Patient
+
 
 # Create your views here.
 
@@ -7,27 +12,58 @@ def home_page(request):
 
 def aboutus(request):
     return render(request,'hospital/aboutus.html')
-
-def adminlogin(request):
-    return render(request,'hospital/login.html',context={
-        "usertype":"Admin",
-        "image":"images/admin.png"
-        })
+    
 
 def doctorlogin(request):
+
+    if request.method == "POST":
+        email = request.POST["userEmail"]
+        password = request.POST["userPassword"]
+        doctor = Doctor.objects.get(email=email)        
+        if password == doctor.password:
+            request.session["doctor"] = f"{doctor.first_name} {doctor.last_name}"
+            request.session["doctorID"] = doctor.id
+            return HttpResponseRedirect(reverse("doctorDash"))
     return render(request,'hospital/login.html',context={
-        "usertype":"Doctor",
+        "title":"Doctor Login",
+        "usertype":"Doctor Email",
         "image":"images/doctor.png"
         })
 
 def patientlogin(request):
+    if request.method == "POST":
+        email = request.POST["userEmail"]
+        password = request.POST["userPassword"]
+        patient = Patient.objects.get(email=email)        
+        if password == patient.password:
+            request.session["patient"] = f"{patient.first_name} {patient.last_name}"
+            request.session["paientID"] = patient.id
+            print(request.session["patient"],request.session["paientID"])
+
     return render(request,'hospital/login.html',context={
-        "usertype":"Patient",
+        "title":"Patitent Login",
+        "usertype":"Patient Email",
         "image":"images/patient.png"
         })
 
 def contactUs(request):
     return render(request,'hospital/contactus.html')
 
-def adminDash(request):
-    return render(request,'hospital/admin_dash.html')
+class DoctorDash(View):
+    def get(self,request):
+        if request.session.get("doctorID"):
+            doctor = Doctor.objects.get(pk = request.session["doctorID"])
+            return render(request,"hospital/doctor_dash.html",context={
+                "doctor" : doctor
+            })
+        else:
+            return HttpResponseRedirect(reverse("doctorlogin"))
+    def post(self,request):
+        if request.POST["logout"]:
+            del request.session["doctor"]
+            del request.session["doctorID"]
+            return HttpResponseRedirect(reverse("homepage"))
+
+
+def diseasePrediction(request):
+    return HttpResponse("Hello World")
