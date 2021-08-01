@@ -15,7 +15,8 @@ def aboutus(request):
     
 
 def doctorlogin(request):
-
+    if request.session.get("paientID"):
+        return HttpResponseRedirect(reverse("doctorDash"))
     if request.method == "POST":
         email = request.POST["userEmail"]
         password = request.POST["userPassword"]
