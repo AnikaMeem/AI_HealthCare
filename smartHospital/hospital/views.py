@@ -39,8 +39,8 @@ def patientlogin(request):
             request.session["patient"] = f"{patient.first_name} {patient.last_name}"
             request.session["paientID"] = patient.id
             print(request.session["patient"],request.session["paientID"])
-
-    return render(request,'hospital/login.html',context={
+    # 'hospital/login.html'
+    return render(request,'hospital/patient_dash.html',context={
         "title":"Patitent Login",
         "usertype":"Patient Email",
         "image":"images/patient.png"
