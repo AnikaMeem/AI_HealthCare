@@ -110,11 +110,22 @@ class PatientDash(View):
             return HttpResponseRedirect(reverse("homepage"))
 
 
+
+
+class Appoinments(View):
+    def get(self,request):
+        return HttpResponse("Hello world!")
+
+
+
 #############################
 #                           #
 #    End of Patient Views   #
 #                           #
 #############################
+
+
+
 
 
 
