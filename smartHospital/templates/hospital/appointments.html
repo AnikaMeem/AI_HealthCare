@@ -1,15 +1,42 @@
 <!DOCTYPE html>
-
+{% extends 'base.html' %}
 
 {% block title %}
-    Appoinment
+Appoinment
 {% endblock title %}
 
 
 {% block content %}
-    <section>
-        Hello World
-    </section>
+<section class="bg-secondary vh-100 vw-100">
+    <div class="text-center p-5">
+        <h1 class="text-capitalize text-light">make an appoinment</h1>
+    </div>
+
+    <div class="appoinment_form_size bg-light d-flex justify-content-center align-items-center flex-column h-100">
+        <form action="." method="POST">
+            {% csrf_token %}
+            <div class="">
+                <div class="form-group">
+                    <label for="doctors">Doctor</label>
+                    <select name="doctors" id="doctors" class="form-control-sm">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="patient">Patient</label>
+                    <select name="patients" id="patient" class="form-control-sm">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Patient</label>
+                    <input id="date" type="datetime-local" name="selected_date"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</section>
 {% endblock content %}
-    
-    

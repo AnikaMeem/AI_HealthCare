@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views.generic import DetailView,View
 from .models import Doctor,Patient
-
+from .forms import AppoinmentsForm
 
 # Create your views here.
 
@@ -114,8 +114,10 @@ class PatientDash(View):
 
 class Appoinments(View):
     def get(self,request):
-        return HttpResponse("Hello world!")
-
+        form = AppoinmentsForm()
+        return render(request,"hospital/appointments.html",context={
+            "form":form
+        })
 
 
 #############################
