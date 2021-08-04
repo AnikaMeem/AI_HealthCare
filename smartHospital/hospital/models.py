@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.utils.timezone import now
 
 # Create your models here.
 class Doctor(models.Model):
@@ -21,9 +22,10 @@ class Patient(models.Model):
         return self.first_name
 
 class Appoinments(models.Model):
-    patient = models.ManyToManyField(Patient)
-    doctor  = models.ManyToManyField(Doctor)
-    date = models.DateTimeField()
-
+    patient = models.ManyToManyField(Patient,related_name="patient") #default doctor_set
+    doctor  = models.ManyToManyField(Doctor,related_name="doctor") #default doctor_set
+    date = models.DateTimeField(null=False,default=now)
+    approved = models.BooleanField(default=False,null=False)
+    
     def __str__(self):
         return self.date
