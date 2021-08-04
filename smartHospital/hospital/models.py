@@ -19,3 +19,11 @@ class Patient(models.Model):
 
     def __str__(self):
         return self.first_name
+
+class Appoinments(models.Model):
+    patient = models.ManyToManyField(Patient)
+    doctor  = models.ManyToManyField(Doctor)
+    date = models.DateTimeField()
+
+    def __str__(self):
+        return self.date
