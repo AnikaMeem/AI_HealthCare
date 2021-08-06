@@ -1,11 +1,11 @@
 from django import forms
 
-from .models import Appoinments
+from .models import Appoinment
 
 
 class AppoinmentsForm(forms.ModelForm):
     class Meta:
-        model = Appoinments
+        model = Appoinment
         fields = "__all__"
         labels = {
             "patient": "Patient",

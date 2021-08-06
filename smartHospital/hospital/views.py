@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views.generic import DetailView,View
-from .models import Doctor,Patient
+from .models import Doctor,Patient,Appoinment
 from .forms import AppoinmentsForm
 
 # Create your views here.
@@ -76,7 +76,7 @@ class DoctorDash(View):
 
 class PatientLogin(View):
     def get(self,request):
-        if request.session.get("paientID"):
+        if request.session.get("patientID"):
             return HttpResponseRedirect(reverse("patientDash"))
         return render(request,'hospital/login.html',context={
             "title":"Patitent Login",
@@ -89,24 +89,23 @@ class PatientLogin(View):
         patient = Patient.objects.get(email=email)        
         if password == patient.password:
             request.session["patient"] = f"{patient.first_name} {patient.last_name}"
-            request.session["paientID"] = patient.id
+            request.session["patientID"] = patient.id
             return HttpResponseRedirect(reverse('patientDash'))
 
 
 
 class PatientDash(View):
     def get(self,request):
-        if request.session.get("paientID"):
-            patient = Patient.objects.get(pk = request.session["paientID"])
+        if request.session.get("patientID"):
+            patient = Patient.objects.get(pk = request.session["patientID"])
             return render(request,"hospital/patient_dash.html",context={
                 "patient" : patient
             })
         else:
             return HttpResponseRedirect(reverse("patientlogin"))
     def post(self,request):
-        if request.POST["logout"]:
-            del request.session["paientID"]
-            del request.session["paientID"]
+            del request.session["patient"]
+            del request.session["patientID"]
             return HttpResponseRedirect(reverse("homepage"))
 
 
@@ -114,10 +113,23 @@ class PatientDash(View):
 
 class Appoinments(View):
     def get(self,request):
-        form = AppoinmentsForm()
+        doctors = Doctor.objects.all()
+        patient = Patient.objects.get(pk=1) #request.session.get["patientID"]
         return render(request,"hospital/appointments.html",context={
-            "form":form
+            "doctors":doctors,
+            "patient":patient 
         })
+    def post(self,request):
+        userDate = request.POST["selected_date"]
+        doctor = request.POST["doctors"]
+        doctorObj = Doctor.objects.get(pk=int(doctor))
+        patient = request.POST["patient"]
+        patientObj = Patient.objects.get(pk=int(patient))
+        inst = Appoinment(date = userDate)
+        inst.save()
+        inst.doctor.add(doctorObj)
+        inst.patient.add(patientObj)
+        return HttpResponseRedirect(reverse("patientDash"))
 
 
 #############################

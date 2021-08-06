@@ -21,10 +21,10 @@ class Patient(models.Model):
     def __str__(self):
         return self.first_name
 
-class Appoinments(models.Model):
+class Appoinment(models.Model):
     patient = models.ManyToManyField(Patient,related_name="patient") #default doctor_set
     doctor  = models.ManyToManyField(Doctor,related_name="doctor") #default doctor_set
-    date = models.DateTimeField(null=False,default=now)
+    date = models.CharField(max_length=40,null=False,default="01/01/1970")
     approved = models.BooleanField(default=False,null=False)
     
     def __str__(self):

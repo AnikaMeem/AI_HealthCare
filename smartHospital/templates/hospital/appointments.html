@@ -19,19 +19,20 @@ Appoinment
                 <div class="form-group">
                     <label for="doctors">Doctor</label>
                     <select name="doctors" id="doctors" class="form-control-sm">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
+
+                        {% for doctor in doctors %}
+                            <option value="{{ doctor.id }}">{{doctor.first_name}} {{doctor.last_name}}</option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="patient">Patient</label>
-                    <select name="patients" id="patient" class="form-control-sm">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
+                    <select name="patient" id="patient" class="form-control-sm">
+                        <option value="{{ patient.id }}">{{patient.first_name}} {{patient.last_name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="date">Patient</label>
+                    <label for="date">Date</label>
                     <input id="date" type="datetime-local" name="selected_date"/>
                 </div>
             </div>
