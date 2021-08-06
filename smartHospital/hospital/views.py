@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views.generic import DetailView,View
-from .models import Doctor,Patient,Appoinment
-from .forms import AppoinmentsForm
+from .models import Doctor,Patient,Appointment
 
 # Create your views here.
 
@@ -105,8 +104,10 @@ class PatientDash(View):
     def get(self,request):
         if request.session.get("patientID"):
             patient = Patient.objects.get(pk = request.session["patientID"])
+            appointment = Appointment.objects.filter(patient=patient.first_name)
             return render(request,"hospital/patient_dash.html",context={
-                "patient" : patient
+                "patient" : patient,
+                "appiontment": appointment
             })
         else:
             return HttpResponseRedirect(reverse("patientlogin"))
