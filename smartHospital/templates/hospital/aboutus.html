@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
 <html lang="en" dir="ltr">
@@ -6,9 +7,8 @@
 {% block content %}
   {% include "hospital/main_navbar.html" %}
   <br><br>
-  <center>
-    <h3 class='alert alert-success' style="margin-bottom:0px;">About Us !</h3>
-  </center>
+    <h3 class="alert alert-success text-center" style="margin-bottom:0px;">About Us !</h3>
+
   <div class="jumbotron" style="margin-bottom: 0px;margin-top: 0px; text-align:center;">
     <h1 class="display-4">Hello</h1>
     <p class="lead">A service dedicated to Hospital Admin, Doctor and Patient.</p>
@@ -20,4 +20,3 @@
   </div>
   {% include "hospital/footer.html" %}
 {% endblock content %}
-
