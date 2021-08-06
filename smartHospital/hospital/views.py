@@ -23,21 +23,25 @@ def aboutus(request):
 #############################
 
 def doctorlogin(request):
-    if request.session.get("doctorID"):
-        return HttpResponseRedirect(reverse("doctorDash"))
-    if request.method == "POST":
-        email = request.POST["userEmail"]
-        password = request.POST["userPassword"]
-        doctor = Doctor.objects.get(email=email)        
-        if password == doctor.password:
-            request.session["doctor"] = f"{doctor.first_name} {doctor.last_name}"
-            request.session["doctorID"] = doctor.id
+
+    try:
+        if request.session.get("doctorID"):
             return HttpResponseRedirect(reverse("doctorDash"))
-    return render(request,'hospital/login.html',context={
-        "title":"Doctor Login",
-        "usertype":"Doctor Email",
-        "image":"images/doctor.png"
-        })
+        if request.method == "POST":
+            email = request.POST["userEmail"]
+            password = request.POST["userPassword"]
+            doctor = Doctor.objects.get(email=email)        
+            if password == doctor.password:
+                request.session["doctor"] = f"{doctor.first_name} {doctor.last_name}"
+                request.session["doctorID"] = doctor.id
+                return HttpResponseRedirect(reverse("doctorDash"))
+        return render(request,'hospital/login.html',context={
+            "title":"Doctor Login",
+            "usertype":"Doctor Email",
+            "image":"images/doctor.png"
+            })
+    except:
+        return HttpResponse(f"Email: {request.POST['userEmail']} does not exist in database")
 
 
 class DoctorDash(View):
@@ -84,13 +88,16 @@ class PatientLogin(View):
             "image":"images/patient.png"
             })
     def post(self,request):
-        email = request.POST["userEmail"]
-        password = request.POST["userPassword"]
-        patient = Patient.objects.get(email=email)        
-        if password == patient.password:
-            request.session["patient"] = f"{patient.first_name} {patient.last_name}"
-            request.session["patientID"] = patient.id
-            return HttpResponseRedirect(reverse('patientDash'))
+        try:
+            email = request.POST["userEmail"]
+            password = request.POST["userPassword"]
+            patient = Patient.objects.get(email=email)        
+            if password == patient.password:
+                request.session["patient"] = f"{patient.first_name} {patient.last_name}"
+                request.session["patientID"] = patient.id
+                return HttpResponseRedirect(reverse('patientDash'))
+        except:
+            return HttpResponse(f"Email: {request.POST['userEmail']} doesn't exist in the database")
 
 
 
