@@ -148,7 +148,9 @@ class Appoinments(View):
 #                           #
 #############################
 
-
+class Signin(View):
+    def get(self,request):
+        return render(request, "hospital/signin.html")
 
 
 
