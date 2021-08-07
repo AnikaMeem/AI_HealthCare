@@ -167,4 +167,7 @@ def contactUs(request):
 def diseasePrediction(request):
     return HttpResponse("Hello World")
 
+def success(request):
+    return render(request, "hospital/success.html")
+
     
