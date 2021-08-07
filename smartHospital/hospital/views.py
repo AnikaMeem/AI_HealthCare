@@ -104,10 +104,12 @@ class PatientDash(View):
     def get(self,request):
         if request.session.get("patientID"):
             patient = Patient.objects.get(pk = request.session["patientID"])
-            appointment = Appointment.objects.filter(patient=patient.first_name)
+            appointment = Appointment.objects.filter(patient=patient.id)
+            #print(appointment.patient.all())
             return render(request,"hospital/patient_dash.html",context={
                 "patient" : patient,
-                "appiontment": appointment
+                "appointments": appointment,
+                "appiontmentCount": appointment.count()>0
             })
         else:
             return HttpResponseRedirect(reverse("patientlogin"))

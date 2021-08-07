@@ -22,8 +22,8 @@ class Patient(models.Model):
         return self.first_name
 
 class Appointment(models.Model):
-    patient = models.ManyToManyField(Patient,related_name="patient") #default doctor_set
-    doctor  = models.ManyToManyField(Doctor,related_name="doctor") #default doctor_set
+    patient = models.ManyToManyField(Patient) #default doctor_set
+    doctor  = models.ManyToManyField(Doctor) #default doctor_set
     date = models.CharField(max_length=40,null=False,default="01/01/1970")
     approved = models.BooleanField(default=False,null=False)
     
