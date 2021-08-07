@@ -9,6 +9,11 @@ class Doctor(models.Model):
     hospital = models.CharField(max_length=100)
     email = models.EmailField(max_length=100,null=False,default="",unique=True)
     password = models.CharField(max_length=30,null=False,default="")
+    
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        return super(Doctor, self).save(*args, **kwargs)
+    
     def __str__(self):
         return self.first_name
 
@@ -17,6 +22,10 @@ class Patient(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=100,null=False,default="",unique=True)
     password = models.CharField(max_length=40,null=False,default="")
+
+    def save(self, *args, **kwargs):
+        self.email = self.email.lower()
+        return super(Patient, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.first_name

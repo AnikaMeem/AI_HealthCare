@@ -30,7 +30,7 @@ def doctorlogin(request):
         if request.method == "POST":
             email = request.POST["userEmail"]
             password = request.POST["userPassword"]
-            doctor = Doctor.objects.get(email=email)        
+            doctor = Doctor.objects.get(email=email.lower())        
             if password == doctor.password:
                 request.session["doctor"] = f"{doctor.first_name} {doctor.last_name}"
                 request.session["doctorID"] = doctor.id
@@ -91,7 +91,7 @@ class PatientLogin(View):
         try:
             email = request.POST["userEmail"]
             password = request.POST["userPassword"]
-            patient = Patient.objects.get(email=email)        
+            patient = Patient.objects.get(email=email.lower())        
             if password == patient.password:
                 request.session["patient"] = f"{patient.first_name} {patient.last_name}"
                 request.session["patientID"] = patient.id
@@ -105,16 +105,18 @@ class PatientDash(View):
     def get(self,request):
         if request.session.get("patientID"):
             doctors = []
-            patient = Patient.objects.get(pk = request.session["patientID"])
+            patient = Patient.objects.get(pk = request.session.get("patientID"))
             appointment = Appointment.objects.filter(patient=patient.id)
             for doc in appointment:
                 name = Doctor.objects.get(pk = int(doc.doctor)).first_name
                 doctors.append(name)
             #print(appointment.patient.all())
+            isEmpty = len(doctors)==0
+            print(isEmpty)
             return render(request,"hospital/patient_dash.html",context={
                 "patient" : patient,
                 "appointments": zip(appointment,doctors),
-                "appiontmentCount": appointment.count()>0
+                "appointmentCount": isEmpty
             })
         else:
             return HttpResponseRedirect(reverse("patientlogin"))
@@ -128,12 +130,15 @@ class PatientDash(View):
 
 class MakeAppointments(View):
     def get(self,request):
-        doctors = Doctor.objects.all()
-        patient = Patient.objects.get(pk=request.session.get["patientID"]) 
-        return render(request,"hospital/appointments.html",context={
-            "doctors":doctors,
-            "patient":patient 
-        })
+        if request.session["patientID"]:
+            doctors = Doctor.objects.all()
+            patient = Patient.objects.get(pk=int(request.session["patientID"])) 
+            return render(request,"hospital/appointments.html",context={
+                "doctors":doctors,
+                "patient":patient 
+            })
+        else:
+            return HttpResponseRedirect(reverse("patientlogin"))
     def post(self,request):
         userDate = request.POST["selected_date"]
         doctorID = request.POST["doctors"]
