@@ -59,11 +59,22 @@ class DoctorDash(View):
             del request.session["doctorID"]
             return HttpResponseRedirect(reverse("homepage"))
 
+def doctorSignin(request):
+    form = DoctorForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse("success"))
+    else:
+        form = DoctorForm(request.POST or None)
+        return render(request, "hospital/signin.html",context={
+        "title": "Doctor Sign In",
+        "form": form 
+        })
 
 
 #############################
 #                           #
-#    End of Patient Views   #
+#    End of Doctor Views    #
 #                           #
 #############################
 
@@ -147,25 +158,6 @@ class MakeAppointments(View):
         appointment.save()
         return HttpResponseRedirect(reverse("patientDash"))
 
-
-#############################
-#                           #
-#    End of Patient Views   #
-#                           #
-#############################
-
-def doctorSignin(request):
-    form = DoctorForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse("success"))
-    else:
-        form = DoctorForm(request.POST or None)
-        return render(request, "hospital/signin.html",context={
-        "title": "Doctor Sign In",
-        "form": form 
-        })
-
 def patientSignin(request):
     form = PatientForm(request.POST or None)
     if form.is_valid():
@@ -177,6 +169,15 @@ def patientSignin(request):
         "title": "Patient Sign In",
         "form": form 
         })
+
+
+#############################
+#                           #
+#    End of Patient Views   #
+#                           #
+#############################
+
+
 
 
 
