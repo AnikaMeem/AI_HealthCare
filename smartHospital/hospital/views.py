@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views.generic import DetailView,View
 from .models import Doctor,Patient,Appointment
-from .forms import DoctorForm
+from .forms import DoctorForm,PatientForm
 
 # Create your views here.
 
@@ -149,7 +149,7 @@ class Appoinments(View):
 #                           #
 #############################
 
-def signin(request):
+def doctorSignin(request):
     form = DoctorForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -158,6 +158,18 @@ def signin(request):
         form = DoctorForm(request.POST or None)
         return render(request, "hospital/signin.html",context={
         "title": "Doctor Sign In",
+        "form": form 
+        })
+
+def patientSignin(request):
+    form = PatientForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse("success"))
+    else:
+        form = PatientForm(request.POST or None)
+        return render(request, "hospital/signin.html",context={
+        "title": "Patient Sign In",
         "form": form 
         })
 
