@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 
 
 {% block title %}
-    Signin
+    {{title}}
 {% endblock title %}
 
 
 {% block content %}
-    <section>
-        Hello
+    <h1 class="mt-4 display-4 text-center text-primary"> {{title}}</h1>
+    <section class="form-size">
+        <form method="POST" action=".">
+                <div class="form-group">
+                    {% render_field  form.first_name class="form-control" placeholder="First Name"%}
+                    {{ form.first_name.errors }}
+                </div>    
+                <div class="form-group">
+                    {% render_field  form.last_name class="form-control" placeholder="Last Name"%}
+                    {{ form.last_name.errors }}
+                </div>
+                <div class="form-group">
+                    {% render_field  form.hospital class="form-control" placeholder="Hospital Name"%}
+                    {{ form.hospital.errors }}
+                </div>
+                <div class="form-group">
+                    {% render_field  form.email class="form-control" placeholder="Your Email"%}
+                    {{ form.email.errors }}
+                </div>
+                <div class="form-group">
+                    {% render_field  form.password class="form-control" placeholder="Password"%}
+                    {{ form.password.errors }}
+                </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
     </section>
 {% endblock content %}
     
