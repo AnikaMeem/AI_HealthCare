@@ -12,7 +12,7 @@
     <h1 class="mt-4 display-4 text-center text-primary"> {{title}}</h1>
     <section class="form-size">
         <form method="POST" action=".">
-            
+            {% csrf_token %}
             {% for field in form %}
             <div class="form-group">
                 {{field.label_tag}}
