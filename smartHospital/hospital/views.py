@@ -149,14 +149,17 @@ class Appoinments(View):
 #                           #
 #############################
 
-class Signin(View):
-    def get(self,request):
-        form = DoctorForm()
+def signin(request):
+    form = DoctorForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse("success"))
+    else:
+        form = DoctorForm(request.POST or None)
         return render(request, "hospital/signin.html",context={
-            "title": "Doctor Sign In",
-            "form": form 
+        "title": "Doctor Sign In",
+        "form": form 
         })
-
 
 
 
