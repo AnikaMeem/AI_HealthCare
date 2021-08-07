@@ -104,12 +104,16 @@ class PatientLogin(View):
 class PatientDash(View):
     def get(self,request):
         if request.session.get("patientID"):
+            doctors = []
             patient = Patient.objects.get(pk = request.session["patientID"])
             appointment = Appointment.objects.filter(patient=patient.id)
+            for doc in appointment:
+                name = Doctor.objects.get(pk = int(doc.doctor)).first_name
+                doctors.append(name)
             #print(appointment.patient.all())
             return render(request,"hospital/patient_dash.html",context={
                 "patient" : patient,
-                "appointments": appointment,
+                "appointments": zip(appointment,doctors),
                 "appiontmentCount": appointment.count()>0
             })
         else:
@@ -122,24 +126,20 @@ class PatientDash(View):
 
 
 
-class Appoinments(View):
+class MakeAppointments(View):
     def get(self,request):
         doctors = Doctor.objects.all()
-        patient = Patient.objects.get(pk=1) #request.session.get["patientID"]
+        patient = Patient.objects.get(pk=request.session.get["patientID"]) 
         return render(request,"hospital/appointments.html",context={
             "doctors":doctors,
             "patient":patient 
         })
     def post(self,request):
         userDate = request.POST["selected_date"]
-        doctor = request.POST["doctors"]
-        doctorObj = Doctor.objects.get(pk=int(doctor))
-        patient = request.POST["patient"]
-        patientObj = Patient.objects.get(pk=int(patient))
-        inst = Appoinment(date = userDate)
-        inst.save()
-        inst.doctor.add(doctorObj)
-        inst.patient.add(patientObj)
+        doctorID = request.POST["doctors"]
+        patientID = request.POST["patient"]
+        appointment = Appointment(doctor=doctorID,patient=patientID,date = userDate)
+        appointment.save()
         return HttpResponseRedirect(reverse("patientDash"))
 
 

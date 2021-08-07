@@ -34,14 +34,14 @@ Patient Dashboard
             {% else %}
             <h1 class="text-center text-success">Appointment Status</h1>
             <ol class="list-group">
-                {% for appointment in appointments %}
+                {% for appointment,doc in appointments %}
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-4">
-                                appointment.doctor
+                                {{doc}}
                             </div>
                             <div class="col-4">
-                                <span class="">appointment.date</span>
+                                <span class="">{{appointment.date}}</span>
                             </div>
                             {% if appointment.approved %}
                                 <div class="col-4">
