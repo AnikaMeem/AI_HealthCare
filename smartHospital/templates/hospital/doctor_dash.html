@@ -44,56 +44,64 @@ Doctor Dashboard
                     <h1 class="text-center text-secondary">You have no appointment</h1>
                 </div>
                 {% endif %}
-                <form method="POST" action=".">
-                    {% csrf_token %}
                     <ol class="list-group">
                         
-                        {% for item in appointments %}
-                        
+                        {% for item,patient in appointments %}
                         {% if item.approved %}
                         <li class="list-group-item">
+
+                        <form method="POST" action=".">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-10">
-                                    Cras justo odio
+                                    {{patient}}
                                 </div>
                                 <div class="col-2">
+                                    <input type="hidden" value="{{item.id}}"/>
                                     <button class="btn btn-success">Complete</button>
                                 </div>
                             </div>
+                            </form>
                         </li>
                         {% endif %}
                         {% endfor %}
                             
                        
                     </ol>
-                </form>
             </div>
 
             <div class="heading mt-2">
                 <h1 class="text-center text-capitalize text-warning"> appointment request </h1>
             </div>
             <div class="appointment-list mt-3 overflow-auto">
-                <form method="POST" action=".">
-                    {% csrf_token %}
-                    <ol class="list-group">
+                
+                <ol class="list-group">
+                        
+                    {% for item,patient in appointments2 %}
+                    {% if item.approved %}
+                    {% else %}
+                    <li class="list-group-item">
 
-                        {% for item in appointments %}
-                        {% if item.approved == False %}
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-8">
-                                    Cras justo odio
-                                </div>
-                                <div class="col-4 text-right">
-                                    <button class="btn btn-success">Accept</button>
-                                    <button class="btn btn-danger">Reject</button>
-                                </div>
+                    <form method="POST" action=".">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-3">
+                                {{patient}}
                             </div>
-                        </li>
-                        {% endif %}
-                        {% endfor %}
-                    </ol>
-                </form>
+                            <div class="col-3">
+                                {{item.date}}
+                            </div>
+                            <div class="col-6">
+                                <input type="hidden" value="{{item.id}}"/>
+                                <button class="ml-5 btn btn-outline-success">Accept</button>
+                                <button class="ml-5 btn btn-outline-warning">Reject</button>
+                            </div>
+                        </div>
+                        </form>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ol>
             </div>
 
 
