@@ -48,10 +48,13 @@ class DoctorDash(View):
     def get(self,request):
         if request.session.get("doctorID"):
             doctor = Doctor.objects.get(pk = request.session["doctorID"])
-            appointments = Appointment.objects.filter(doctor=str(doctor.id))
+            appointments = Appointment.objects.filter(doctor=int(doctor.id))
+            print(appointments)
+            hasAppointment = appointments.count()>0
             return render(request,"hospital/doctor_dash.html",context={
                 "doctor" : doctor,
-                "appointments": appointments
+                "appointments": appointments,
+                "hasAppointment": hasAppointment
             })
         else:
             return HttpResponseRedirect(reverse("doctorlogin"))
