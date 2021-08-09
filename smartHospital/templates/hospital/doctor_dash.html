@@ -57,8 +57,8 @@ Doctor Dashboard
                                     {{patient}}
                                 </div>
                                 <div class="col-2">
-                                    <input type="hidden" value="{{item.id}}"/>
-                                    <button class="btn btn-success">Complete</button>
+                                    <input type="hidden" name="ID" value="{{item.id}}"/>
+                                    <button type="submit" name="complete" class="btn btn-success">Complete</button>
                                 </div>
                             </div>
                             </form>
@@ -92,9 +92,9 @@ Doctor Dashboard
                                 {{item.date}}
                             </div>
                             <div class="col-6">
-                                <input type="hidden" value="{{item.id}}"/>
-                                <button class="ml-5 btn btn-outline-success">Accept</button>
-                                <button class="ml-5 btn btn-outline-warning">Reject</button>
+                                <input type="hidden" name="ID" value="{{item.id}}"/>
+                                <button type="submit" name="accept" class="ml-5 btn btn-outline-success">Accept</button>
+                                <button type="submit" name="reject" class="ml-5 btn btn-outline-warning">Reject</button>
                             </div>
                         </div>
                         </form>
