@@ -53,9 +53,6 @@ class DoctorDash(View):
             for item in appointments:
                 name = Patient.objects.get(pk=int(item.patient)).first_name
                 patients.append(name)
-            for a,b in zip(appointments,patients):
-                print(a.approved)
-                print(b)
             hasAppointment = appointments.count()>0
             return render(request,"hospital/doctor_dash.html",context={
                 "doctor" : doctor,
@@ -66,10 +63,20 @@ class DoctorDash(View):
         else:
             return HttpResponseRedirect(reverse("doctorlogin"))
     def post(self,request):
-        if request.POST["logout"]:
+        if request.POST.get("logout",False):
             del request.session["doctor"]
             del request.session["doctorID"]
             return HttpResponseRedirect(reverse("homepage"))
+        elif request.POST.get("accept",False):
+            id = request.POST.get("ID")
+            appointment = Appointment.objects.get(pk=int(id))
+            appointment.approved = True
+            appointment.save()
+            return HttpResponseRedirect(reverse("doctorDash"))
+        elif request.POST.get("reject",False):
+            id = request.POST.get("ID")
+            Appointment.objects.get(pk=int(id)).delete()
+            return HttpResponseRedirect(reverse("doctorDash"))
 
 def doctorSignin(request):
     form = DoctorForm(request.POST or None)
