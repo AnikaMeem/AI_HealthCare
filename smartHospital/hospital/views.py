@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views.generic import DetailView,View
-from .models import Doctor,Patient,Appointment
+from .models import Doctor,Patient,Appointment,Disease
 from .forms import DoctorForm,PatientForm
 
 # Create your views here.
@@ -205,7 +205,13 @@ def contactUs(request):
 
 class DiseasePrediction(View):
     def get(self,request):
-        return render(request,"hospital/diseasePrediction.html")
+        if request.session.get("doctorID") or request.session.get("patientID"):
+            diseases = Disease.objects.all().order_by('diseaseName')
+            return render(request,"hospital/diseasePrediction.html",context={
+                "diseases":diseases
+            })
+        else:
+            return HttpResponseRedirect(reverse('homepage'))
 
 def success(request):
     return render(request, "hospital/success.html")
