@@ -38,3 +38,9 @@ class Appointment(models.Model):
     
     def __str__(self):
         return self.date
+
+class Diseases(models.Model):
+    diseaseName = models.CharField(max_length=40,null=False,default="No Disease")
+
+    def __str__(self):
+        return self.diseaseName
