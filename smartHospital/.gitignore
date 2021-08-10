@@ -12,7 +12,7 @@ db.sqlite3
 db.sqlite3-journal
 media
 media/
-static/h5models/
+h5models/
 hospital/migrations
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/

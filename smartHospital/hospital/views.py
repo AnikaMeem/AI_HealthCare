@@ -2,10 +2,16 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.views.generic import DetailView,View
+from django.core.files.storage import FileSystemStorage
+from keras.models import load_model
+from keras.preprocessing import image
+import numpy as np
+import h5py
 from .models import Doctor,Patient,Appointment,Disease
 from .forms import DoctorForm,PatientForm
 
 # Create your views here.
+
 
 def home_page(request):
     return render(request,'hospital/index.html')
@@ -212,8 +218,38 @@ class DiseasePrediction(View):
             })
         else:
             return HttpResponseRedirect(reverse('homepage'))
+    def post(self,request):
+        id = request.POST.get("disease")
+        img = request.FILES.get("imagePath")
+        fss = FileSystemStorage()
+        fss.save(img.name,img)
+        path = fss.url(img.name)
+        ml_path = "."+path
+        path = "../"+ path[1:]
+        print(path)
+        percent = prediction(id, ml_path, 64, 64)
+        if percent > .5:
+            result = True
+        else:
+            result = False
 
+        fss.delete(path)
+        diseases = Disease.objects.all().order_by('diseaseName')
+        return render(request,"hospital/diseasePrediction.html",context={
+                "diseases":diseases,
+                "result": result,
+                "percent": percent,
+                "safe": 100-percent
+            })
 def success(request):
     return render(request, "hospital/success.html")
 
-    
+
+def prediction(model_num,img_path,img_height,img_width):
+    model = load_model("./h5models/"+str(model_num)+".h5")
+    img = image.load_img(img_path,target_size=(img_height,img_width))
+    x = image.img_to_array(img)
+    x/=255
+    x = np.expand_dims(x,axis=0)
+    result = model.predict(x)
+    return result[0][0]

@@ -32,6 +32,18 @@
                 </button>
             </form>
         </div>
+
+        <div class="result-section bg-light p-3">
+            
+            {% if result %}
+                <p class="text-warning">Our system {{percent}} % sure that patient have the selected disease</p>
+            {% else %}
+                <p class="text-success">Our system {{safe}} % sure that patient is safe</p>
+            {% endif %}
+                
+            
+        </div>
+
     </section>
 {% endblock content %}
     

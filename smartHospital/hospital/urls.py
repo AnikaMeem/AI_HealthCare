@@ -1,6 +1,7 @@
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 from . import views
-from django.contrib.auth.views import LoginView,LogoutView
 
 urlpatterns = [
     path("",views.home_page,name = "homepage"),
@@ -16,3 +17,4 @@ urlpatterns = [
     path("appointment/",views.MakeAppointments.as_view(),name = "appointment"),
     path("success/",views.success,name="success")
 ]
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
