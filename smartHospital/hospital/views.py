@@ -142,7 +142,6 @@ class PatientDash(View):
                 doctors.append(name)
             #print(appointment.patient.all())
             isEmpty = len(doctors)==0
-            print(isEmpty)
             return render(request,"hospital/patient_dash.html",context={
                 "patient" : patient,
                 "appointments": zip(appointment,doctors),
@@ -204,8 +203,9 @@ def contactUs(request):
     return render(request,'hospital/contactus.html')
 
 
-def diseasePrediction(request):
-    return HttpResponse("Hello World")
+class DiseasePrediction(View):
+    def get(self,request):
+        return render(request,"hospital/diseasePrediction.html")
 
 def success(request):
     return render(request, "hospital/success.html")

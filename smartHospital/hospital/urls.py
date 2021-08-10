@@ -12,7 +12,7 @@ urlpatterns = [
     path('contactus/',views.contactUs,name = "contactus"),
     path("doctorDash/",views.DoctorDash.as_view(),name = "doctorDash"),
     path("patientDash/",views.PatientDash.as_view(),name = "patientDash"),
-    path("diseasePrediction/",views.diseasePrediction,name = "diseasePrediction"),
+    path("diseasePrediction/",views.DiseasePrediction.as_view(),name = "diseasePrediction"),
     path("appointment/",views.MakeAppointments.as_view(),name = "appointment"),
     path("success/",views.success,name="success")
 ]
