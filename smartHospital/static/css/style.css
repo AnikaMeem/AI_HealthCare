@@ -283,3 +283,13 @@ body{
   top:50%;
   transform: translate(-50%,-50%);
 }
+.form-section{
+  width: 65vh;
+  height: 30vh;
+  background: white;
+  padding: 15px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-90%);
+}
