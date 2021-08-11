@@ -40,10 +40,11 @@
             {% else %}
                 <h5 class="text-success">Our system {{safe}} % sure that patient is safe</h5>
             {% endif %}
-                
             
         </div>
-
+        <div class="text-center">
+            <a href="{% url 'homepage' %} " class="btn btn-outline-success">Back To Home</a>
+        </div>
     </section>
 {% endblock content %}
     
