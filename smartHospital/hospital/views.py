@@ -227,7 +227,11 @@ class DiseasePrediction(View):
         ml_path = "."+path
         path = "../"+ path[1:]
         print(path)
-        percent = prediction(id, ml_path, 64, 64)
+        if int(id) == 3 or int(id) == 4:
+            percent = prediction(id, ml_path, 224, 224)
+
+        else:
+            percent = prediction(id, ml_path, 64, 64)
         if percent > .5:
             result = True
         else:
