@@ -243,7 +243,7 @@ class DiseasePrediction(View):
                 "diseases":diseases,
                 "result": result,
                 "percent": "{:.2f}".format(percent*100),
-                "safe": "{:.2f}".format(1-percent*100)
+                "safe": "{:.2f}".format((1-percent)*100)
             })
 def success(request):
     return render(request, "hospital/success.html")
