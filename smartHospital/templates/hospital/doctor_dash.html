@@ -53,11 +53,17 @@ Doctor Dashboard
                         <form method="POST" action=".">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-10">
+                                <div class="col-4">
                                     {{patient}}
                                 </div>
-                                <div class="col-2">
+
+                                <div class="col-4">
+                                    <span class="">{{item.date}}</span>
+                                </div>
+
+                                <div class="col-4">
                                     <input type="hidden" name="ID" value="{{item.id}}"/>
+                                    <button type="submit" name="complete" class="btn btn-success">Chat</button>
                                     <button type="submit" name="complete" class="btn btn-success">Complete</button>
                                 </div>
                             </div>

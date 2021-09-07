@@ -34,24 +34,25 @@ Patient Dashboard
             {% else %}
             <h1 class="text-center text-success">Appointment Status</h1>
             
-            <ol class="list-group">
+            <ol class="list-group d-block w-100">
                 {% for appointment,doc in appointments %}
-                    <li class="list-group-item">
+                    <li class="list-group-item mb-1 d-block w-100">
                         <div class="row">
                             <div class="col-4">
-                                {{doc}}
+                                Dr. {{doc}}
                             </div>
                             <div class="col-4">
                                 <span class="">{{appointment.date}}</span>
                             </div>
                             {% if appointment.approved %}
-                                <div class="col-4">
-                                    <span class="bg-success">Approved</span>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <span class="bg-success p-2 mr-3">Approved</span>
+                                    <button type="submit" name="complete" class="btn btn-success">Chat</button>
                                 </div>
                             {% else %}
-                            <div class="col-4">
-                                <p class="bg-warning">Waiting</p>
-                            </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <p class="bg-warning p-2">Waiting</p>
+                                </div>
                             {% endif %}
                         </div>
 
