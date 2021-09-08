@@ -62,9 +62,15 @@ Doctor Dashboard
                                 </div>
 
                                 <div class="col-4">
-                                    <input type="hidden" name="ID" value="{{item.id}}"/>
-                                    <button type="submit" name="complete" class="btn btn-success">Chat</button>
-                                    <button type="submit" name="complete" class="btn btn-success">Complete</button>
+                                    <form method="POST" action=".">
+                                        {% csrf_token %}
+
+                                        <input type="hidden" name="chat" value="chat" />
+                                        <button class="btn btn-success">Chat</button>
+
+                                        <input type="hidden" name="ID" value="{{item.id}}" />
+                                        <button class="btn btn-success">Complete</button>
+                                    </form>
                                 </div>
                             </div>
                             </form>

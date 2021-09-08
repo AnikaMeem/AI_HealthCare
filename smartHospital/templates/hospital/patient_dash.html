@@ -47,7 +47,12 @@ Patient Dashboard
                             {% if appointment.approved %}
                                 <div class="col-4 d-flex justify-content-center">
                                     <span class="bg-success p-2 mr-3">Approved</span>
-                                    <button type="submit" name="complete" class="btn btn-success">Chat</button>
+                                    <form method="POST" action=".">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="chat" value="chat" />
+                                        <button type="submit" name="complete" class="btn btn-success">Chat</button>
+                                    </form>
+                                    
                                 </div>
                             {% else %}
                                 <div class="col-4 d-flex justify-content-center">

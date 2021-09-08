@@ -79,10 +79,12 @@ class DoctorDash(View):
             appointment.approved = True
             appointment.save()
             return HttpResponseRedirect(reverse("doctorDash"))
-        elif request.POST.get("reject",False):
+        elif request.POST.get("reject",False) or request.POST.get("complete",False):
             id = request.POST.get("ID")
             Appointment.objects.get(pk=int(id)).delete()
             return HttpResponseRedirect(reverse("doctorDash"))
+        elif request.POST.get("chat",False):
+            return HttpResponseRedirect(reverse("chat"))
 
 def doctorSignin(request):
     form = DoctorForm(request.POST or None)
@@ -156,9 +158,12 @@ class PatientDash(View):
         else:
             return HttpResponseRedirect(reverse("patientlogin"))
     def post(self,request):
+        if request.POST.get("logout",False):
             del request.session["patient"]
             del request.session["patientID"]
             return HttpResponseRedirect(reverse("homepage"))
+        elif request.POST.get("chat",False):
+            return HttpResponseRedirect(reverse("chat"))
 
 
 
