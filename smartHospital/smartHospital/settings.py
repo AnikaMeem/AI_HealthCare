@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'hospital',
+    'chatApp',
     'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
