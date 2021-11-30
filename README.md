@@ -101,4 +101,7 @@ Disease Information:
 #### Make an appointment page:
 ![12 make_appiontment](https://user-images.githubusercontent.com/35170218/144063686-14a72ca8-3cf8-49a3-b37f-a2c4c10c42af.png)
 
+#### Disease Prediction Page:
+![Screenshot from 2021-11-30 20-24-01](https://user-images.githubusercontent.com/35170218/144065147-3c90e1a8-5d49-4fdf-8605-79c13c40d246.png)
+
 
