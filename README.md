@@ -31,7 +31,7 @@
 --------------------------------------------------------------------------------------------
 
 ### Work Distribution:
-  * The main app Hospital was developed by [Md.Shofiul Islam](https://www.linkedin.com/in/shofiul/)  [Md.Shofiul Islam (Facebook)](https://www.facebook.com/shofiul735/)
+  * The main app [Hospital](https://github.com/Shofiul735/smartMedicalUsingDeepLearning/tree/main/smartHospital/hospital) was developed by [Md.Shofiul Islam](https://www.linkedin.com/in/shofiul/)  [Md.Shofiul Islam (Facebook)](https://www.facebook.com/shofiul735/)
   * Chatapp was developed by [Anika Tahsin Meem](https://www.linkedin.com/in/anika-tahsin-meem/) and [Jainab Sultana](https://www.linkedin.com/in/jaynab-sultana-0017251a9/)
 
 ### Tools and Languages:
