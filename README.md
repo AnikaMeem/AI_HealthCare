@@ -102,6 +102,7 @@ Disease Information:
 ![12 make_appiontment](https://user-images.githubusercontent.com/35170218/144063686-14a72ca8-3cf8-49a3-b37f-a2c4c10c42af.png)
 
 #### Disease Prediction Page:
-![Screenshot from 2021-11-30 20-24-01](https://user-images.githubusercontent.com/35170218/144065147-3c90e1a8-5d49-4fdf-8605-79c13c40d246.png)
-
+![Screenshot from 2022-03-02 11-24-16](https://user-images.githubusercontent.com/35170218/156300892-81fb1006-0f8a-4e6c-ba2d-f5d2485a68cf.png)
+![Screenshot from 2022-03-02 11-24-22](https://user-images.githubusercontent.com/35170218/156300768-ac8ed0b2-42d8-44b7-9f5b-66425553f7a0.png)
+![Screenshot from 2022-03-02 11-24-25](https://user-images.githubusercontent.com/35170218/156300778-bf87f388-ca3e-45fd-bc9b-268bfd384cef.png)
 
